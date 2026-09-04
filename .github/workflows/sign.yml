@@ -1,14 +1,7 @@
+# Manual only. shortcuts sign needs a Mac signed into iCloud; GitHub runners are not. Kept for a future self-hosted Mac runner.
 name: Sign shortcut
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - "v*"
-    paths:
-      - "shortcuts/**"
-      - ".github/workflows/sign.yml"
   workflow_dispatch:
 
 permissions:

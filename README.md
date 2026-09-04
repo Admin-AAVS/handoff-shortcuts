@@ -1,38 +1,31 @@
-# handoff-shortcuts
+# Split for Discord
 
-iOS Shortcut that splits a long clipboard into Discord-sized pieces (1900 characters, cut at paragraph breaks). Pair it with the Handoff Discord bot, which copies a thread *out* of Discord. This shortcut is how you paste a long prompt *in*.
+Pastes long text into Discord in pieces under the 2000-char limit, from your iPhone.
 
-## Install on iPhone
+## Install
 
-1. Open the latest [Release](https://github.com/Admin-AAVS/handoff-shortcuts/releases/latest) in Safari.
-2. Tap `Split-for-Discord.shortcut`.
-3. iOS asks **Add Shortcut**. Add it.
-4. Or save the file in Files, then tap it there → Add Shortcut.
+https://www.icloud.com/shortcuts/0934d3f87e50462184916f7baa50a45a
 
-Unsigned imports were removed in iOS 15. This file is signed on a GitHub macOS runner (`shortcuts sign --mode anyone`) so you do not need a Mac.
+Tap that link → **Add Shortcut**.
 
-## Use it
+**Required: run it via Back Tap.** Settings → Accessibility → Touch → Back Tap → Triple Tap → Split for Discord. If you run it from the Shortcuts app and switch to Discord, iOS ends it after piece 2.
 
-1. Copy a long note (try ~6,000 characters).
-2. Run **Split for Discord**.
-3. You get **Piece 1 of N copied**. Paste into Discord, tap OK, repeat.
-4. A notification says `Done. N pieces.` when it finishes. Cancel on any alert to stop.
+## Use
+
+1. Copy long text.
+2. Open Discord.
+3. Triple-tap the back of the phone.
+4. Paste, tap OK, repeat until "of N" is done.
 
 ## Nitro
 
-The limit is the Text action named `Limit`, currently `1900`. Discord Nitro can take 4000; edit `Limit` to `3900` so emoji and punctuation still fit.
+Edit the `1900` Text action to `3900`.
 
-## Handoff bot
+## Source
 
-The bot that exports a Discord thread as a clean `.md` / `.txt` file is not public yet. Placeholder: `https://handoff.example` (replace when the landing page ships).
+`shortcuts/split-for-discord.plist` is the reference source. It is **not** installable as-is. Signing needs a Mac signed into iCloud. GitHub runners are not.
 
-## Build
-
-Push to `main` (or a `v*` tag) runs `.github/workflows/sign.yml` on `macos-14`. It lints the unsigned plist, signs it, uploads the artifact, and on a `v*` tag attaches it to a GitHub Release.
-
-```
-python scripts/lint_plist.py shortcuts/split-for-discord.plist
-```
+Part of the Handoff bundle: `https://handoff.example`
 
 Agent: grok-4.6 (Grok Build CLI / Discord) — 2026-09-04
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
