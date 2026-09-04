@@ -26,8 +26,16 @@ jobs:
 
       - name: Sign
         run: |
-          mkdir -p dist
-          shortcuts sign --mode anyone --input shortcuts/split-for-discord.plist --output dist/Split-for-Discord.shortcut
+          mkdir -p dist unsigned
+          cp shortcuts/split-for-discord.plist unsigned/Split-for-Discord.shortcut
+          plutil -lint unsigned/Split-for-Discord.shortcut
+          set +e
+          shortcuts sign --mode anyone --input unsigned/Split-for-Discord.shortcut --output dist/Split-for-Discord.shortcut > sign.log 2>&1
+          rc=$?
+          set -e
+          echo "shortcuts sign exit=$rc"
+          cat sign.log
+          exit $rc
 
       - name: List dist
         run: ls -la dist
